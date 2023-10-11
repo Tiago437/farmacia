@@ -15,7 +15,7 @@
 				<a href="additem.php"><li><h4>Adicionar Item</h4></li></a>
 				<a href="view.php"><li><h4>Lista de Items</h4></li></a>
 				<a href="index.php"><li><h4>Pesquisar Item</h4></li></a>
-				<a href="additem.php"><li><h4>Items a vencer</h4></li></a>		
+				<a href="itemvenc.php"><li><h4>Items a vencer</h4></li></a>		
 			</ul>
 		</div>			
 	</nav>	
@@ -43,8 +43,7 @@ $result=$query->fetch();
 			<option value="Gramas">Grama</option>			
 		</select>
 		<label class="form-label">Descrição/Observação:</label>
-		<textarea rows="5" cols="75" class="form-input" name="desc" maxlength="450"><?= $result['descricao']?>
-		</textarea>
+		<textarea rows="5" cols="75" class="form-input" name="desc" maxlength="450"><?= $result['descricao']?></textarea>
 		<input type="number" name="cod" value="<?= $result['cod']?>" hidden>
 		<button class="btn btn-primary" type="submit" value="enviar" name="enviar">Atualizar</button>
 

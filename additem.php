@@ -17,7 +17,7 @@
 				<a href="additem.php"><li><h4>Adicionar Item</h4></li></a>
 				<a href="view.php"><li><h4>Lista de Items</h4></li></a>
 				<a href="index.php"><li><h4>Pesquisar Item</h4></li></a>
-				<a href="additem.php"><li><h4>Items a vencer</h4></li></a>		
+				<a href="itemvenc.php"><li><h4>Items a vencer</h4></li></a>		
 			</ul>
 		</div>			
 	</nav>	
@@ -42,9 +42,7 @@
 			<option value="Bolsa">Bolsa</option>			
 		</select>
 		<label class="form-label">Descrição/Observação:</label>
-		<textarea rows="5" cols="75" class="form-input" name="descItem" maxlength="450">
-			
-		</textarea>
+		<textarea type="text" rows="5" cols="75" class="form-input" name="descItem" maxlength="450" placeholder="Digite..."></textarea>
 		
 		<button type="submit" value="enviar" name="enviar" class="btn btn-primary">Cadastrar</button>
 	</form>	

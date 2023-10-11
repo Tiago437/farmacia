@@ -17,7 +17,7 @@
 				<a href="additem.php"><li><h4>Adicionar Item</h4></li></a>
 				<a href="view.php"><li><h4>Lista de Items</h4></li></a>
 				<a href="index.php"><li><h4>Pesquisar Item</h4></li></a>
-				<a href="additem.php"><li><h4>Items a vencer</h4></li></a>		
+				<a href="itemvenc.php"><li><h4>Items a vencer</h4></li></a>	
 			</ul>
 		</div>			
 	</nav>	
@@ -37,7 +37,7 @@ $cod=$_GET['cod'];
 		<label class="form-input-outro">Vencimento:</label>
 		<input type="date" name="datavencimentoItem" class="form-input form-input-outro" placeholder="Data de vencimento" value="<?= $result['dataVencimento']?>" readonly>
 		<label class="form-input-outro">Quantidade Atual:</label>
-		<input type="number" name="quantidade" class="form-input form-input-outro" placeholder="
+		<input type="number" name="quantidadeat" class="form-input form-input-outro" placeholder="
 		Quantidade" value="<?= $result['quantidade']?>" readonly>
 		
 		<label class="form-input-outro">Quantidade:</label>
@@ -55,7 +55,7 @@ $cod=$_GET['cod'];
 <?php 
 
 if(!empty($_GET['enviar']) && strcmp($_GET['enviar'],"Adicionar")==0){
-	$qtd=$_GET['quantidade'];
+	$qtd=$_GET['quantidade'];	
 	$cod=$_GET['cod'];
 	$qt=new SQL();
 	$q1=$qt->conn->prepare("UPDATE produtos SET quantidade=quantidade+? WHERE cod=?");
@@ -66,7 +66,13 @@ if(!empty($_GET['enviar']) && strcmp($_GET['enviar'],"Adicionar")==0){
 }
 if(!empty($_GET['enviar']) && strcmp($_GET['enviar'],"Retirar")==0){
 	$qtd=$_GET['quantidade'];
+	$qtd1=$_GET['quantidadeat'];
 	$cod=$_GET['cod'];
+	if($qtd>$qtd1){
+		echo "Erro sem saldo suficiente";
+		header("location: index.php");
+		die();
+	}
 	$qt=new SQL();
 	$q1=$qt->conn->prepare("UPDATE produtos SET quantidade=quantidade-? WHERE cod=?");
 
