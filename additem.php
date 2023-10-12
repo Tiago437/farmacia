@@ -60,7 +60,7 @@
 		$desc=$_POST['descItem'];
 
 		$query = new SQL();
-		$qt=$query->conn->prepare("INSERT INTO produtos (nome,quantidade,dataVencimento,tipo,descricao) VALUES (?,?,?,?,?)");
+		$qt=$query->conn->prepare("INSERT INTO produtos (nome,quantidade,dataCadastro,dataVencimento,tipo,descricao) VALUES (?,?,CURDATE(),?,?,?)");
 		$qt->bindvalue(1,$nome);
 		$qt->bindvalue(2,$quant);
 		$qt->bindvalue(3,$dataV);

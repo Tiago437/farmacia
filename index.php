@@ -52,7 +52,7 @@ $nome=$_GET['nomeItem'];
 	$result=$q1->fetchall();
 
 	foreach ($result as $key => $campo) {
-		echo "<tr><td>".$campo['cod']."</td><td>".$campo['nome']."</td><td>".$campo['quantidade']."</td><td>".$campo['dataVencimento']."</td><td>".$campo['descricao']."</td><td><a href=att.php?cod=".$campo['cod']."><button class='but btn-success' title='Vizualizar'><i class='bi bi-search'></i></button></a> <a href=editar.php?edit=".$campo['cod']."> <button class='but btn-secondary' title='Editar'><i class='bi bi-pencil-square'></i></button></a> <a href=view.php?del=".$campo['cod']."> <button class='but btn-danger' title='Excluir'><i class='bi bi-trash'></i></button></a> </tr>";
+		echo "<tr><td>".$campo['cod']."</td><td>".$campo['nome']."</td><td>".$campo['quantidade']."</td><td>".$campo['dataVencimento']."</td><td>".$campo['descricao']."</td><td><a href=att.php?cod=".$campo['cod']."><button class='but btn-success' title='Vizualizar'><i class='bi bi-search'></i></button></a> <a href=editar.php?edit=".$campo['cod']."> <button class='but btn-secondary' title='Editar'><i class='bi bi-pencil-square'></i></button></a> <a href=view.php?del=".$campo['cod']."> <button class='but btn-danger' title='Excluir'><i class='bi bi-trash'></i></button></a> <a href=relatorios.php?cod=".$campo['cod']."><button class='but btn-warning' title='Relatório'><i class='bi bi-list-ol'></i></button></a></tr>";
 	}
 }
 

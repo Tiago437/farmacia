@@ -25,7 +25,7 @@ require_once("config/class.func.cfg.php");
 
 $q1= new SQL();
 
-$q2=$q1->conn->prepare("SELECT cod,nome,quantidade,date_format(dataVencimento,'%d/%m/%Y') AS dataVencimento,datediff(dataVencimento,CURDATE()) AS diasRestantes,tipo,descricao FROM produtos order by dataVencimento asc;");
+$q2=$q1->conn->prepare("SELECT cod,nome,quantidade,date_format(dataVencimento,'%d/%m/%Y') AS dataVencimento,datediff(dataVencimento,CURDATE()) AS diasRestantes,tipo,descricao FROM produtos order by diasRestantes asc;");
 $q2->execute();
 
 $result=$q2->fetchall();
@@ -49,7 +49,7 @@ $result=$q2->fetchall();
 <?php	
 
 foreach ($result as $key => $value) {
-	if($value['diasRestantes']<5){
+	if($value['diasRestantes']<=5){
 		$cor='red';
 		$corletra='white';
 	}else{

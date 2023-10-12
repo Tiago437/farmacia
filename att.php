@@ -63,6 +63,15 @@ if(!empty($_GET['enviar']) && strcmp($_GET['enviar'],"Adicionar")==0){
 	$q1->bindvalue(1,$qtd);
 	$q1->bindvalue(2,$cod);
 	$q1->execute();
+
+	$q2=$qt->conn->prepare("INSERT INTO relatorio (cod,nome,qtd,data,tipo) SELECT cod,nome,?,CURDATE(),? from produtos WHERE cod=?");
+
+	$q2->bindvalue(1,$qtd);
+	$q2->bindvalue(2,"Adicionado");
+	$q2->bindvalue(3,$cod);
+	
+	$q2->execute();
+	echo "<meta http-equiv='refresh' content='0.5 att.php?cod=".$cod."'>";
 }
 if(!empty($_GET['enviar']) && strcmp($_GET['enviar'],"Retirar")==0){
 	$qtd=$_GET['quantidade'];
@@ -79,6 +88,17 @@ if(!empty($_GET['enviar']) && strcmp($_GET['enviar'],"Retirar")==0){
 	$q1->bindvalue(1,$qtd);
 	$q1->bindvalue(2,$cod);
 	$q1->execute();
+
+	$q2=$qt->conn->prepare("INSERT INTO relatorio (cod,nome,qtd,data,tipo) SELECT cod,nome,?,CURDATE(),? from produtos WHERE cod=?");
+
+	$q2->bindvalue(1,$qtd);
+	$q2->bindvalue(2,"Retirado");
+	$q2->bindvalue(3,$cod);
+	
+	$q2->execute();
+	echo "<meta http-equiv='refresh' content='0.5 att.php?cod=".$cod."'>";
+
+
 }
  ?>
 	
