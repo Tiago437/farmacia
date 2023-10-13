@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="style/css.css" type="text/css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	<script src="style/sweetalert.js"></script>
 </head>
 <body>
 	<nav class="nav-menu">
@@ -18,7 +19,7 @@
 				<a href="itemvenc.php"><li><h4>Items a vencer</h4></li></a>		
 			</ul>
 		</div>			
-	</nav>	
+	</nav>
 	<div class="container">
 	<form action="" method="GET" style="width: 400px;margin: 0 0 0 20px">
 		<div class="input-group">
