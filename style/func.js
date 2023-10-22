@@ -24,3 +24,43 @@
 
 		
 	}
+
+	const cadForm = document.getElementById("formcad");
+
+	if(cadForm){
+		cadForm.addEventListener("submit", async (e) =>{
+			e.preventDefault();
+
+			const dadosForm = new FormData(cadForm);
+
+			const dados=await fetch("cadastrar.php", {
+				method: "POST",
+				body: dadosForm
+			})
+
+			const resposta=await dados.json();
+			console.log(resposta);
+
+if(resposta['status']) {
+ Swal.fire({
+  position: 'top',
+  icon: 'success',
+  title: resposta['msg'],
+  showConfirmButton: false,
+  timer: 1500
+})
+ setInterval(function() {window.open("additem.php","_self")},2000);
+ }else{
+ Swal.fire({
+  position: 'top',
+  icon: 'error',
+  title: resposta['msg'],
+  showConfirmButton: false,
+  timer: 1500
+  })
+
+}
+
+});
+
+}

@@ -2,7 +2,6 @@
 
 date_default_timezone_set('America/Porto_Velho');
 
-$ff="ass";
 class SQL{
 private $host="mysql:host=localhost;";
 private $dbname="dbname=farmacia";
@@ -24,10 +23,4 @@ public $conn;
 
 
 }
-
-
-
-
-
-
  ?>

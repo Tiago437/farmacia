@@ -1,0 +1,41 @@
+SISTEMA DE LOGIN E CADASTRO
+implementação SWEETALERT no additem
+sweetalert na pesquisa
+swwet alert no relatorio
+sweet alert na exclusão
+sweet alert na adição e retirada
+sistema responsivo
+configurar função de imprimir relatorio
+configurar paginação lista de itens
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------//---------------------------------------
+
+cadastro de items
+listagem de items cadastrados
+geração de relatorio diario/mensal/anual por item ou geral
+listagem de items proximo do vencimento com destaque para os mais proximos de vencer
+pesquisa de item cadastrado
+edição de item cadastrado
+sistema de entrada e saida de item ja cadastrado
+
+
+
