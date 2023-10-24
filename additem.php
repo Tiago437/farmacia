@@ -13,10 +13,20 @@
 
 </head>
 <?php 
-require_once("config/class.func.cfg.php");
+session_start();
+require_once('config/class.func.cfg.php');
 
  ?>
 <body>
+      <?php 
+if(!isset($_SESSION['login'])){
+echo "<div class='container vh-100 d-flex flex-column align-items-center'>
+  <h2 class='fw-normal p-4'> Erro: conta não existe! <a href='entrar.php'>clique aqui para entrar</a></h2>
+</div></body></html>";
+die();
+}
+
+ ?>
 	<main class="d-flex flex-nowrap">
 							<!-- inicio menu responsivo -->
 <nav class="navbar navbar-dark bg-dark fixed-top d-none" id="menu-responsivo">
@@ -71,14 +81,14 @@ require_once("config/class.func.cfg.php");
       <div class="dropdown">
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>mdo</strong>
+        <strong><?=$_SESSION['nome']?></strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
+        
+        <li><a class="dropdown-item" href="#">Alterar dados</a></li>
+        <li><a class="dropdown-item" href="#">Cadastrar conta</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
+        <li><a class="dropdown-item" href="login.php?sair=ok">Sair</a></li>
       </ul>
     </div>
     </div>
@@ -125,17 +135,17 @@ require_once("config/class.func.cfg.php");
       </li>
     </ul>
     <hr> 
-    <div class="dropdown">
+  <div class="dropdown">
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>mdo</strong>
+        <strong><?=$_SESSION['nome']?></strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
+        
+        <li><a class="dropdown-item" href="#">Alterar dados</a></li>
+        <li><a class="dropdown-item" href="#">Cadastrar conta</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
+        <li><a class="dropdown-item" href="login.php?sair=ok">Sair</a></li>
       </ul>
     </div>
   </div>

@@ -1,3 +1,8 @@
+<?php 
+session_start();
+require_once('config/class.func.cfg.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,19 +13,42 @@
 	<!-- bootstrap 5.3.2 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	<script src="style/sweetalert.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<link rel="stylesheet" href="style/css.css" type="text/css">
 </head>
-<?php 
-require_once('config/class.func.cfg.php');
 
+<body>
+		<?php 
+if(!isset($_SESSION['login'])){
+echo "<div class='container vh-100 d-flex flex-column align-items-center'>
+	<h2 class='fw-normal p-4'> Erro: conta não existe! <a href='entrar.php'>clique aqui para entrar</a></h2>
+</div></body></html>";
+die();
+}
 
+ ?>
+
+ <?php 
 $q=new SQL();
 
-$c1=$q->conn->prepare("SELECT COUNT(*) AS cnt FROM PRODUTOS");
+$c1=$q->conn->prepare("SELECT COUNT(*) AS cnt FROM PRODUTOS WHERE MONTH(dataCadastro)=MONTH(CURDATE())");
 $c1->execute();
 $r=$c1->fetch();
-?>
-<body>
+
+$c2=$q->conn->prepare("SELECT COUNT(*) AS cnt FROM relatorio WHERE tipo='Adicionado' AND MONTH(data)=MONTH(CURDATE())");
+$c2->execute();
+$r1=$c2->fetch();
+
+$c3=$q->conn->prepare("SELECT COUNT(*) AS cnt FROM relatorio WHERE tipo='Retirado' AND MONTH(data)=MONTH(CURDATE())");
+$c3->execute();
+$r2=$c3->fetch();
+
+$c4=$q->conn->prepare("SELECT COUNT(*) AS cnt FROM produtos WHERE datediff(dataVencimento,CURDATE()) <= 5");
+$c4->execute();
+$r3=$c4->fetch();
+
+  ?>
 	<main class="d-flex flex-nowrap">
 		<!-- inicio menu responsivo -->
   
@@ -73,17 +101,17 @@ $r=$c1->fetch();
         </ul>       
       </div>
       <hr>
-      <div class="dropdown">
+     <div class="dropdown">
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>mdo</strong>
+        <strong><?=$_SESSION['nome']?></strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
+        
+        <li><a class="dropdown-item" href="#">Alterar dados</a></li>
+        <li><a class="dropdown-item" href="#">Cadastrar conta</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
+        <li><a class="dropdown-item" href="login.php?sair=ok">Sair</a></li>
       </ul>
     </div>
     </div>
@@ -134,32 +162,78 @@ $r=$c1->fetch();
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>mdo</strong>
+        <strong><?=$_SESSION['nome']?></strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
+        
+        <li><a class="dropdown-item" href="#">Alterar dados</a></li>
+        <li><a class="dropdown-item" href="#">Cadastrar conta</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
+        <li><a class="dropdown-item" href="login.php?sair=ok">Sair</a></li>
       </ul>
     </div>
   </div>
 
+
   <div class="b-example-divider b-example-vr"></div>
-  <div class="container vh-100 home">
+  <div class="container vh-100 home d-flex align-items-center flex-column">
+  		<h2 class="mt-3">Estatisticas do Mês</h2>
+  <div class="top-box d-flex justify-content-evenly align-items-center w-100">
   	
-  <div class="top-box d-flex justify-content-evenly align-items-center">
+  	<a href="view.php" class="text-decoration-none"><div class="box box1 d-flex justify-content-center align-items-center text-bg-success"><p><?=$r['cnt']?></p></div></a>
   	
-  	<div class="box box1 d-flex justify-content-center align-items-center"><p><?=$r['cnt']?></p></div>
-  	<div class="box box2 d-flex justify-content-center align-items-center"><p>280</p></div>
-  	<div class="box box3 d-flex justify-content-center align-items-center"><p>33</p></div>
-  	<div class="box box4 d-flex justify-content-center align-items-center"><p>50</p></div>
+  	<a href="view.php?tipor=mes&mov=1&mensal=10&relatorio=enviar&cod&diario&anual" class="text-decoration-none"><div class="box box2 d-flex flex-column justify-content-center align-items-center text-bg-primary"><p><?=$r1['cnt']?></p>
+  	</div></a>
+
+
+  	<a href="view.php?tipor=mes&mov=2&mensal=10&relatorio=enviar&cod&diario&anual" class="text-decoration-none"><div class="box box3 d-flex flex-column justify-content-center align-items-center text-bg-warning"><p><?=$r2['cnt']?></p>
+  </div></a>
+  	<a href="itemvenc.php" class="text-decoration-none"><div class="box box4 d-flex justify-content-center align-items-center text-bg-danger"><p><?=$r3['cnt']?></p></div></a>
   </div>
+  <div class="d-flex flex-row justify-content-center" id="grafico1">
+  <canvas id="grafico">
+  	
+  </canvas>
+  </div>
+
   </div>
 
 </main>
 </body>
+<script>
+  const ctx = document.getElementById('grafico');
+
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Produtos Cadastrados', 'Entrada de Produtos', 'Saida Produtos', 'Proximos do Vencimento'],
+      datasets: [{
+        label: '# Items',
+        data: [<?=$r['cnt']?>, <?=$r1['cnt']?>, <?=$r2['cnt']?>, <?=$r3['cnt']?>],
+         backgroundColor: [
+      'rgba(25, 135, 84, 0.5)',
+      'rgba(13, 110, 253, 0.5)',
+      'rgba(255, 193, 7, 0.5)',
+      'rgba(220, 53, 69, 0.5)'   
+    ],
+    borderColor: [
+      'rgb(25, 135, 84)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 193, 7)',
+      'rgb(220, 53, 69)',    
+    ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </html>
