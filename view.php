@@ -19,7 +19,10 @@ require_once('config/class.func.cfg.php');
 	<link rel="stylesheet" href="style/css.css" type="text/css">
 
 </head>
-<body>
+
+<body id="body">
+
+ 
   <?php 
 if(!isset($_SESSION['login'])){
 echo "<div class='container vh-100 d-flex flex-column align-items-center'>
@@ -88,7 +91,7 @@ die();
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
         
         <li><a class="dropdown-item" href="#">Alterar dados</a></li>
-        <li><a class="dropdown-item" href="#">Cadastrar conta</a></li>
+        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalCaduser">Cadastrar conta</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="login.php?sair=ok">Sair</a></li>
       </ul>
@@ -146,9 +149,9 @@ die();
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
         
         <li><a class="dropdown-item" href="#">Alterar dados</a></li>
-        <li><a class="dropdown-item" href="#">Cadastrar conta</a></li>
+        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalCaduser">Cadastrar conta</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="login.php?sair=ok">Sair</a></li>
+        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalSair">Sair</a></li>
       </ul>
     </div>
   </div>
@@ -156,9 +159,6 @@ die();
   <div class="b-example-divider b-example-vr"></div>
 
 	<div class="container vh-100">
-
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -171,12 +171,12 @@ die();
       <div class="modal-body">
       <form action="" method="GET" class="itens-form">		
 		
-		<label for="">Diário</label>
+		<label for="dia">Diário</label>
 		<input type="radio" name="tipor" value="dia" id="dia" onclick="showdia(1)" required>
-		<label for="">Mensal</label>
+		<label for="mes">Mensal</label>
 		<input type="radio" name="tipor" value="mes" id="mes" onclick="showdia(2)" required>  
 		
-		<label for="">Anual</label>
+		<label for="ano">Anual</label>
 		<input type="radio" name="tipor" value="ano" id="ano" onclick="showdia(3)" required><br>
 		<select name="mov" id="">
 	    <option value="0">Geral</option>
@@ -208,10 +208,7 @@ die();
 			<option value="2025">2025</option>
 			<option value="2026">2026</option>
 			<option value="2027">2027</option>
-		</select>
-		
-		<input type="text" name="cod" value="<?=$cod?>" hidden>
-	
+		</select>	
 	
       </div>
       <div class="modal-footer">
@@ -223,10 +220,69 @@ die();
   </div>
 </div>
 
+<!-- MODAL CADASTRO DE CONTA -->
+<div class="modal fade" id="modalCaduser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Conta</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action="caduser.php" method="POST" class="itens-form">		
+		<div class="form-floating mb-2 ">
+		
+		<input type="text" name="nomecad" id="nomecad" class="form-control" required>
+    <label for="nomecad">Nome:</label>
+    </div>
+    <div class="form-floating mb-2">
+	
+		<input type="text" name="logincad"  id="logincad" class="form-control" required>  
+      <label for="logincad">ID de acesso:</label>
+		</div>
+    <div class="form-floating">	
+		<input type="password" name="senhacad" class="form-control" id="senhacad" required>
+    <label for="senhacad">Senha</label>
+		</div>
+	
+	
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+        	<button type="submit" name="caduser" class="btn btn-primary" value="enviar">Cadastrar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- modal sair -->
+
+<!-- MODAL CADASTRO DE CONTA -->
+<div class="modal fade" id="modalSair" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Sair da conta</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">    
+  <p>Deseja realmente sair da conta?</p>
+  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <a href="login.php?sair=ok" class="text-decoration-none"><button class="btn btn-danger">Sair</button></a>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- fim modal sair -->
 
 
 
-	<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+	<div class="d-grid gap-1 d-md-flex justify-content-md-end mt-2">
 	<button type="button" class="btn btn-warning" onclick="window.print()">Imprimir</button>
 <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-list-ol"></i> Relatório
 </button>
@@ -238,7 +294,6 @@ die();
 $cnt=1;
 
 if(!empty($_GET['relatorio']) && !empty($_GET['tipor'])){
-$cod1=$_GET['cod'];
 $tipo=$_GET['tipor'];
 $dia=$_GET['diario'];
 $mes=$_GET['mensal'];
@@ -306,10 +361,32 @@ foreach ($result as $key => $relat) {
 }
 if(!empty($_GET['relatorio']))
 	goto fim;
+if(!empty($_GET['page'])){
+$pageinit=filter_input(INPUT_GET,"page",FILTER_SANITIZE_NUMBER_INT);
+if(!$pageinit){
+  $pageinit=1;
+}
+}else{
+  $pageinit=1;
+}
+
+$limitepg=19;
+
+$offset=$pageinit*$limitepg-$limitepg;
+
+
 
 $q1= new SQL();
 
-$q2=$q1->conn->prepare("SELECT cod,nome,quantidade,date_format(dataVencimento,'%d/%m/%Y') AS dataVencimento,tipo,descricao FROM produtos");
+$query1=$q1->conn->prepare("SELECT COUNT(cod) AS totresult FROM produtos");
+$query1->execute();
+
+$totres=$query1->fetch();
+
+$totpg=ceil($totres['totresult']/$limitepg);
+
+
+$q2=$q1->conn->prepare("SELECT cod,nome,quantidade,date_format(dataVencimento,'%d/%m/%Y') AS dataVencimento,tipo,descricao FROM produtos LIMIT $limitepg OFFSET $offset");
 $q2->execute();
 
 $result=$q2->fetchall();
@@ -347,9 +424,34 @@ fim:
 </tbody>
 </table>
 
+<nav aria-label="..." <?php if(!isset($pageinit)){echo "hidden";}?> >
+  <ul class="pagination">
+    <li class="page-item <?php if($pageinit==1){echo"disabled";}?>">
+      <a class="page-link" <?php if($pageinit>1){echo "href=view.php?page=".($pageinit-1)."";}?>>Anterior</a>
+    </li>
+    <?php if($pageinit>1){
+ echo "<li class='page-item'><a class='page-link' href=view.php?page=".($pageinit-1).">".($pageinit-1)."</a></li>";
+}
 
+?>
+
+    <li class="page-item active" aria-current="page">
+      <a class="page-link" href="#"><?=$pageinit?></a>
+    </li>
+
+    <?php 
+    if($pageinit<$totpg){
+      echo "
+    <li class='page-item'><a class='page-link' href=view.php?page=".($pageinit+1).">".($pageinit+1)."</a></li>
+    <li class='page-item'>
+      <a class='page-link' href=view.php?page=".($pageinit+1).">Proxima</a>
+    </li>";}
+    ?>
+  </ul>
+</nav>
 </div>
 </main>
 </body>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </html>

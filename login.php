@@ -18,7 +18,7 @@ $q= new SQL();
 	<link rel="stylesheet" href="style/css.css">
 	<title>Login</title>
 </head>
-<body class="d-flex flex-column align-items-center justify-content-center bg-dark py-3">
+<body class="d-flex flex-column align-items-center justify-content-center bg-dark py-3" style="background-image: url('style/bg.jpg');background-size: cover;">
 
 
 <?php

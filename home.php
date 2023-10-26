@@ -27,6 +27,34 @@ echo "<div class='container vh-100 d-flex flex-column align-items-center'>
 die();
 }
 
+if(isset($_GET['cad'])){
+
+	if(strcmp($_GET['cad'],'ok')==0){
+	echo "<script>
+ Swal.fire({
+  position: 'top',
+  icon: 'success',
+  title: 'Cadastro realizado com sucesso!',
+  showConfirmButton: false,
+  timer: 1500
+})
+
+</script>";}
+
+if(strcmp($_GET['cad'],'ok')!=0){
+	echo "<script>
+ Swal.fire({
+  position: 'top',
+  icon: 'error',
+  title: 'Erro cadastro não realizado!',
+  showConfirmButton: false,
+  timer: 1500
+})
+
+</script>";}
+
+}
+
  ?>
 
  <?php 

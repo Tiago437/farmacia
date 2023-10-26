@@ -6,7 +6,12 @@ sweet alert na exclusão
 sweet alert na adição e retirada
 sistema responsivo
 configurar função de imprimir relatorio
-configurar paginação lista de itens
+configurar paginação lista de itens/relatorio/itemvenc
+verificar segurança do codigo
+revisar cada pagina e linha de codigo
+
+
+
 
 
 

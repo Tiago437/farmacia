@@ -52,13 +52,13 @@ die();
         </a>
       </li>
       <li>
-        <a href="view.php" class="nav-link active">
+        <a href="view.php" class="nav-link text-white ">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
           Lista de Items
         </a>
       </li>
       <li>
-        <a href="index.php" class="nav-link text-white">
+        <a href="index.php" class="nav-link active">
          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg> 
           Pesquisar Items
         </a>
@@ -114,15 +114,15 @@ die();
         </a>
       </li>
       <li>
-        <a href="view.php" class="nav-link active">
+        <a href="view.php" class="nav-link text-white">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
           Lista de Items
         </a>
       </li>
       <li>
-        <a href="index.php" class="nav-link text-white">
+        <a href="index.php" class="nav-link active">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-          Pesquisar Items
+          Pesquisar Items > Atualizar
         </a>
       </li>
       <li>
@@ -164,10 +164,10 @@ $cod=$_GET['cod'];
 	<form action="" method="GET" class="col-sm-6 mt-5 p-2">
 		<div class="row">
 		<div class="col mb-2">			
-		<label for="">Nome:</label>	
+		<label for="nome">Nome:</label>	
 		</div>
 		<div class="col mb-2">
-		<input type="text" name="nomeItem"  class="form-control form-input-text"placeholder="Nome" value="<?= $result['nome']?>" readonly>	</div>	
+		<input type="text" name="nomeItem"  class="form-control form-input-text"placeholder="Nome" value="<?= $result['nome']?>" id="nome" readonly>	</div>	
 		</div>
 		<div class="row">
 			<div class="col mb-2">
@@ -181,20 +181,20 @@ $cod=$_GET['cod'];
 	
 		<div class="row">
 			<div class="col mb-2">
-		<label class="">Quantidade Atual:</label>
+		<label for="qtdat">Quantidade Atual:</label>
 	</div>
 	<div class="col mb-2">	
 		<input type="number" name="quantidadeat" class="form-control form-input-outro" placeholder="
-		Quantidade" value="<?= $result['quantidade']?>" readonly>
+		Quantidade" value="<?= $result['quantidade']?>" id="qtdat" readonly>
 		</div>
 		</div>
 		<div class="row">
 			<div class="col mb-2">
-		<label class="form-label">Quantidade:</label>
+		<label class="form-label" for="qtd">Quantidade:</label>
 		</div>
 		<div class="col mb-2">
 			<input type="number" name="quantidade" class="form-control form-input-outro" placeholder="
-		Quantidade" min="0" max="1000">
+		Quantidade" min="0" max="1000" id="qtd">
 		</div>
 		</div>
 		
@@ -208,56 +208,50 @@ $cod=$_GET['cod'];
 	
 <?php 
 
-if(!empty($_GET['enviar']) && strcmp($_GET['enviar'],"Adicionar")==0){
+if(!empty($_GET['enviar'])){
+  $qtdat=$_GET['quantidadeat']; 
 	$qtd=$_GET['quantidade'];	
 	$cod=$_GET['cod'];
+
+  if($qtd>1000){
+    echo "<h5 class='text-danger'>Erro: quantidade acima do permitido!</h5>";
+    die("<meta http-equiv='refresh' content='2 att.php?cod=".$cod."'>");
+  }
+
+  if($qtdat<$qtd && strcmp($_GET['enviar'],"Retirar")==0){
+    echo "<h5 class='text-danger'>Erro saldo insuficiente!</h5>";
+    die("<meta http-equiv='refresh' content='2 att.php?cod=".$cod."'>");
+  }
+
+  echo "cvhggg";
 	$qt=new SQL();
 	
+  if(strcmp($_GET['enviar'],"Adicionar")==0){    
+    $tipo="Adicionado";
+      $queryupdt="UPDATE produtos SET quantidade=quantidade+? WHERE cod=?";
+  }
+  if(strcmp($_GET['enviar'],"Retirar")==0){    
+    $tipo="Retirado";
+    $queryupdt="UPDATE produtos SET quantidade=quantidade-? WHERE cod=?";
+  }
 
-	$q2=$qt->conn->prepare("INSERT INTO relatorio (cod,nome,qtdanterior,qtd,data,tipo) SELECT cod,nome,quantidade,?,NOW(),? from produtos WHERE cod=?");
+	$q2=$qt->conn->prepare("INSERT INTO relatorio (cod,nome,qtdanterior,qtd,data,tipo,user) SELECT cod,nome,quantidade,?,NOW(),?,? from produtos WHERE cod=?");
 
 	$q2->bindvalue(1,$qtd);
-	$q2->bindvalue(2,"Adicionado");
-	$q2->bindvalue(3,$cod);
+	$q2->bindvalue(2,$tipo);
+	$q2->bindvalue(4,$cod);
+  $q2->bindvalue(3,$_SESSION['nome']);
 	
 	$q2->execute();
 
-	$q1=$qt->conn->prepare("UPDATE produtos SET quantidade=quantidade+? WHERE cod=?");
+	$q1=$qt->conn->prepare($queryupdt);
 
 	$q1->bindvalue(1,$qtd);
 	$q1->bindvalue(2,$cod);
 	$q1->execute();
 	echo "<meta http-equiv='refresh' content='0.5 att.php?cod=".$cod."'>";
 }
-if(!empty($_GET['enviar']) && strcmp($_GET['enviar'],"Retirar")==0){
-	$qtd=$_GET['quantidade'];
-	$qtd1=$_GET['quantidadeat'];
-	$cod=$_GET['cod'];
-	if($qtd>$qtd1){
-		echo "Erro sem saldo suficiente";
-		header("location: index.php");
-		die();
-	}
-	$qt=new SQL();
 
-	$q2=$qt->conn->prepare("INSERT INTO relatorio (cod,nome,qtdanterior,qtd,data,tipo) SELECT cod,nome,quantidade,?,NOW(),? from produtos WHERE cod=?");
-
-	$q2->bindvalue(1,$qtd);
-	$q2->bindvalue(2,"Retirado");
-	$q2->bindvalue(3,$cod);
-	
-	$q2->execute();
-
-
-	$q1=$qt->conn->prepare("UPDATE produtos SET quantidade=quantidade-? WHERE cod=?");
-
-	$q1->bindvalue(1,$qtd);
-	$q1->bindvalue(2,$cod);
-	$q1->execute();
-	echo "<meta http-equiv='refresh' content='0.5 att.php?cod=".$cod."'>";
-
-
-}
  ?>
 	</div>
 </main>

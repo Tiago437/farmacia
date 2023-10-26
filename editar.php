@@ -42,7 +42,7 @@ die();
       <div class="offcanvas-body">       
               <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="home.php" class="nav-link active" aria-current="page">
+        <a href="home.php" class="nav-link text-white" aria-current="page">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
           Home
         </a>
@@ -54,7 +54,7 @@ die();
         </a>
       </li>
       <li>
-        <a href="view.php" class="nav-link  text-white">
+        <a href="view.php" class="nav-link  active">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
           Lista de Items
         </a>
@@ -104,7 +104,7 @@ die();
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="home.php" class="nav-link active" aria-current="page">
+        <a href="home.php" class="nav-link text-white" aria-current="page">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
           Home
         </a>
@@ -116,7 +116,7 @@ die();
         </a>
       </li>
       <li>
-        <a href="view.php" class="nav-link text-white">
+        <a href="view.php" class="nav-link active">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
           Lista de Items
         </a>
@@ -216,29 +216,12 @@ $result=$query->fetch();
 		
 		
 	</form>	
-	</div>
-	<!-- sss -->
-	<!-- <form action="" method="POST" class="eform">
-		<input type="text" name="nomeItem"  class="form-input form-input-text"placeholder="Nome" value="<?= $result['nome']?>" required >
-		<input type="date" name="datavencimentoItem" class="form-input form-input-outro" placeholder="Data de vencimento" value="<?= $result['dataVencimento']?>" required>
-		<input type="number" name="quantidade" class="form-input form-input-outro" placeholder="
-		Quantidade" value="<?= $result['quantidade']?>" required>
-		<select name="tipoItem" class="form-input form-input-outro" value="<?= $result['tipo']?>" required>
-			<option value="Caixa">Caixa</option>
-			<option value="Unidade">Unidade</option>
-			<option value="Gramas">Grama</option>			
-		</select>
-		<label class="form-label">Descrição/Observação:</label>
-		<textarea rows="5" cols="75" class="form-input" name="desc" maxlength="450"><?= $result['descricao']?></textarea>
-		<input type="number" name="cod" value="<?= $result['cod']?>" hidden>
-		<button class="btn btn-primary" type="submit" value="enviar" name="enviar">Atualizar</button>
-
-	</form> -->
+	</div>	
 	<?php
 if(!empty($_POST['enviar'])){
 		$nome=$_POST['nomeItem'];
 		$quant=$_POST['quantidade'];
-		$dataV= $_POST['datavencimentoItem'];//date("Y-m-d H:i:s");//
+		$dataV= $_POST['datavencimentoItem'];
 		$tipo=$_POST['tipoItem'];
 		$cod1=$_POST['cod'];
 		$desc=$_POST['desc'];
@@ -253,8 +236,6 @@ if(!empty($_POST['enviar'])){
 		$qt->bindvalue(6,$cod1);
 
 		$qt->execute();
-	
-		// header("location: view.php");
 		 
 	}
 	?>
