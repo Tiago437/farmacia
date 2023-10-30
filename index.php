@@ -1,6 +1,7 @@
 <?php 
 session_start();
 require_once('config/class.func.cfg.php');
+require_once("config/menu.php");
 ?>
 
 <!DOCTYPE html>
@@ -84,9 +85,9 @@ die();
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
         
         <li><a class="dropdown-item" href="#">Alterar dados</a></li>
-        <li><a class="dropdown-item" href="#">Cadastrar conta</a></li>
+        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalCaduser">Cadastrar conta</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="login.php?sair=ok">Sair</a></li>
+        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalSair">Sair</a></li>
       </ul>
     </div>
     </div>
@@ -142,9 +143,9 @@ die();
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
         
         <li><a class="dropdown-item" href="#">Alterar dados</a></li>
-        <li><a class="dropdown-item" href="#">Cadastrar conta</a></li>
+        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalCaduser">Cadastrar conta</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="login.php?sair=ok">Sair</a></li>
+        <li><a class="dropdown-item"  href="#" data-bs-toggle="modal" data-bs-target="#modalSair">Sair</a></li>
       </ul>
     </div>
   </div>

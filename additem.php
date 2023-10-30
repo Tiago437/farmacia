@@ -1,3 +1,9 @@
+<?php 
+session_start();
+require_once('config/class.func.cfg.php');
+require_once("config/menu.php");
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,22 +18,8 @@
 	<link rel="stylesheet" href="style/css.css" type="text/css">
 
 </head>
-<?php 
-session_start();
-require_once('config/class.func.cfg.php');
-
- ?>
 <body>
-      <?php 
-if(!isset($_SESSION['login'])){
-echo "<div class='container vh-100 d-flex flex-column align-items-center'>
-  <h2 class='fw-normal p-4'> Erro: conta não existe! <a href='entrar.php'>clique aqui para entrar</a></h2>
-</div></body></html>";
-die();
-}
-
- ?>
-	<main class="d-flex flex-nowrap">
+<main class="d-flex flex-nowrap">
 							<!-- inicio menu responsivo -->
 <nav class="navbar navbar-dark bg-dark fixed-top d-none" id="menu-responsivo">
   <div class="container-fluid">
@@ -85,10 +77,10 @@ die();
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
         
-        <li><a class="dropdown-item" href="#">Alterar dados</a></li>
-        <li><a class="dropdown-item" href="#">Cadastrar conta</a></li>
+       <li><a class="dropdown-item" href="#">Alterar dados</a></li>
+        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalCaduser">Cadastrar conta</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="login.php?sair=ok">Sair</a></li>
+        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalSair">Sair</a></li>
       </ul>
     </div>
     </div>
@@ -142,10 +134,10 @@ die();
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
         
-        <li><a class="dropdown-item" href="#">Alterar dados</a></li>
-        <li><a class="dropdown-item" href="#">Cadastrar conta</a></li>
+         <li><a class="dropdown-item" href="#">Alterar dados</a></li>
+        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalCaduser">Cadastrar conta</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="login.php?sair=ok">Sair</a></li>
+        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalSair">Sair</a></li>
       </ul>
     </div>
   </div>
