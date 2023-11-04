@@ -21,7 +21,7 @@
         <p class="t-login">please signin</p>
         <div class="form-floating mb-2">
           <input type="text" name="nomeent" class="form-control" id="nomeent" placeholder="Email">
-          <label for="nomeent" class="label-login">Email</label>
+          <label for="nomeent" class="label-login">ID</label>
 
         </div>
         <div class="form-floating">

@@ -10,8 +10,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <!-- sweetalert -->
   <script src="style/sweetalert.js"></script>
-  <!-- funções -->
-  <script src="style/func.js"></script>
   <link rel="stylesheet" href="style/css.css" type="text/css">
 
 </head>
@@ -111,9 +109,9 @@
     </div>
   </div>
 </div>
-<!-- modal sair -->
 
-<!-- MODAL CADASTRO DE CONTA -->
+
+<!-- modal sair -->
 <div class="modal fade" id="modalSair" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -135,6 +133,43 @@
 </div>
 
 <!-- fim modal sair -->
+<!-- modal alterar dados -->
+
+<div class="modal fade" id="modalAlter" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">Alterar senha da Conta</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action="caduser.php" method="POST" class="itens-form">    
+    <div class="form-floating mb-2 ">
+    
+    <input type="text" name="nomecad" id="nomecad" value="<?=$_SESSION['nome']?>" class="form-control" disabled>
+    <label for="nomecad">Nome:</label>
+    </div>
+    <div class="form-floating mb-2">
+  
+    <input type="text" name="novoLogin"  id="logincad" class="form-control" value="<?=$_SESSION['login']?>" readonly>  
+      <label for="logincad">ID de acesso:</label>
+    </div>
+    <div class="form-floating"> 
+    <input type="password" name="novaSenha" class="form-control" id="senhacad" required>
+    <label for="senhacad">Senha</label>
+    </div>
+  
+  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+          <button type="submit" name="caduser" class="btn btn-primary" value="alterarSenha">Alterar Senha</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 
 
 <?php 

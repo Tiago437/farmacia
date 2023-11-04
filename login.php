@@ -41,7 +41,7 @@ echo"<div class='loader'><div class='loader2'></div></div>";
 echo "<meta http-equiv='refresh' content='3 home.php'>";
 
 }else{
-	echo "erro ao entrar";
+	die("<h2 class='text-white'>ID ou senha incorretos</h2><meta http-equiv='refresh' content='2 entrar.php'>");
 
 }
 }

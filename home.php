@@ -21,7 +21,35 @@ require_once("config/menu.php");
 
 <body>
 <?php 
+if(isset($_GET['alter'])){
+  if($_GET['alter']==1){
+  echo "<script>
+ Swal.fire({
+  position: 'top',
+  icon: 'success',
+  title: 'Senha alterada com sucesso!',
+  showConfirmButton: false,
+  timer: 1500
+})
 
+</script>";
+}else{
+  echo "<script>
+ Swal.fire({
+  position: 'top',
+  icon: 'error',
+  title: 'Erro não foi possivel alterar a senha!',
+  showConfirmButton: false,
+  timer: 1500
+})
+</script>";
+}
+
+unset($_GET['alter']);
+echo "<meta http-equiv='refresh' content='2 home.php'>";
+
+
+}
 
 if(isset($_GET['cad'])){
 
@@ -132,7 +160,7 @@ $r3=$c4->fetch();
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
         
-        <li><a class="dropdown-item" href="#">Alterar dados</a></li>
+        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalAlter">Alterar dados</a></li>
          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalCaduser">Cadastrar conta</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalSair">Sair</a></li>
@@ -190,7 +218,7 @@ $r3=$c4->fetch();
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
         
-        <li><a class="dropdown-item" href="#">Alterar dados</a></li>
+        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalAlter">Alterar dados</a></li>
          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalCaduser">Cadastrar conta</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalSair">Sair</a></li>

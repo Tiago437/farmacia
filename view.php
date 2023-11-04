@@ -83,7 +83,7 @@ require_once("config/menu.php");
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
         
-         <li><a class="dropdown-item" href="#">Alterar dados</a></li>
+         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalAlter">Alterar dados</a></li>
         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalCaduser">Cadastrar conta</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalSair">Sair</a></li>
@@ -141,7 +141,7 @@ require_once("config/menu.php");
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
         
-        <li><a class="dropdown-item" href="#">Alterar dados</a></li>
+        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalAlter">Alterar dados</a></li>
         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalCaduser">Cadastrar conta</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalSair">Sair</a></li>
@@ -241,7 +241,7 @@ if(!$pageinit){
   $pageinit=1;
 }
 
-$limitepg=19;
+$limitepg=12;
 
 $offset=$pageinit*$limitepg-$limitepg;
 
