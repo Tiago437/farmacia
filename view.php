@@ -16,7 +16,7 @@ require_once("config/menu.php");
 	<!-- sweetalert -->
 	<script src="style/sweetalert.js"></script>
 	<!-- funções -->
-	<script src="style/func.js"></script>
+
 	<link rel="stylesheet" href="style/css.css" type="text/css">
 
 </head>
@@ -279,7 +279,7 @@ $result=$q2->fetchall();
 <?php	
 
 foreach ($result as $key => $value) {
-	echo "<tr><td>".$value['cod']."</td><td>".$value['nome']."</td><td>".$value['quantidade']."</td><td>".$value['tipo']."</td><td>".$value['dataVencimento']."</td><td id='desc'>".$value['descricao']."</td><td> <a href=editar.php?edit=".$value['cod']."><button class='btn btn-secondary btn-sm' title='Editar'><i class='bi bi-pencil-square'></i></button></a> <a href=view.php?del=".$value['cod']." ><button class='btn btn-danger btn-sm' title='Excluir'><i class='bi bi-trash'></i></button></a></td></tr>";
+	echo "<tr><td>".$value['cod']."</td><td>".$value['nome']."</td><td>".$value['quantidade']."</td><td>".$value['tipo']."</td><td>".$value['dataVencimento']."</td><td id='desc'>".$value['descricao']."</td><td> <a href=editar.php?edit=".$value['cod']."><button class='btn btn-secondary btn-sm' title='Editar'><i class='bi bi-pencil-square'></i></button></a> <a href=view.php?del=".$value['cod']." data-bs-toggle='modal' data-bs-target='#modalDelete' id='del'><button class='btn btn-danger btn-sm' title='Excluir'><i class='bi bi-trash'></i></button></a></td></tr>";
 }
 if(isset($_GET['del'])){
 
@@ -324,5 +324,6 @@ fim:
 </main>
 </body>
 
+  <script src="style/func.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </html>

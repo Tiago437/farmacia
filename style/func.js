@@ -1,3 +1,11 @@
+$(document).ready(function(){
+$('#deletar').click(function(){
+var href= $('#del').attr('href');
+window.open(href,'_self');
+});
+});
+
+
 	function showdia(i){
 
 		var dia=document.getElementById("diario");

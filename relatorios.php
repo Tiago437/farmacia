@@ -154,15 +154,15 @@ $cod=$_GET['cod'];
 	<div class="row">
 	<form action="" method="GET">
 		<div class="col mt-2">
-		<label for="tipor" class="form-label"><h5>Relatório individual:</h5></label>
+		<h5>Relatório individual:</h5>
 		</div>
 		<div class="col mt-2">
-		<label for="">Diário</label>
+		<label for="dia">Diário</label>
 		<input type="radio" name="tipor" value="dia" id="dia" onclick="showdia(1)" required>
-		<label for="">Mensal</label>
+		<label for="mes">Mensal</label>
 		<input type="radio" name="tipor" value="mes" id="mes" onclick="showdia(2)" required>  
 		
-		<label for="">Anual</label>
+		<label for="ano">Anual</label>
 		<input type="radio" name="tipor" value="ano" id="ano" onclick="showdia(3)" required>
 		
 		</div>
@@ -282,5 +282,7 @@ foreach ($result as $key => $relat) {
 </div>
 </main>
 </body>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
 </html>

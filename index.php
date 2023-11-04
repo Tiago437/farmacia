@@ -183,7 +183,7 @@ $nome=$_GET['nomeItem'];
 	$result=$q1->fetchall();
 
 	foreach ($result as $key => $campo) {
-		echo "<tr><td>".$campo['cod']."</td><td>".$campo['nome']."</td><td>".$campo['quantidade']."</td><td>".$campo['dataVencimento']."</td><td id='desc'>".$campo['descricao']."</td><td><a href=att.php?cod=".$campo['cod']."><button class='btn btn-success btn-sm' title='Vizualizar'><i class='bi bi-search'></i></button></a> <a href=editar.php?edit=".$campo['cod']."> <button class='btn btn-secondary btn-sm' title='Editar'><i class='bi bi-pencil-square'></i></button></a> <a href=view.php?del=".$campo['cod']."> <button class='btn btn-danger btn-sm' title='Excluir'><i class='bi bi-trash'></i></button></a> <a href=relatorios.php?cod=".$campo['cod']."><button class='btn btn-warning btn-sm' title='Relatório'><i class='bi bi-list-ol'></i></button></a></td></tr>";
+		echo "<tr><td>".$campo['cod']."</td><td>".$campo['nome']."</td><td>".$campo['quantidade']."</td><td>".$campo['dataVencimento']."</td><td id='desc'>".$campo['descricao']."</td><td><a href=att.php?cod=".$campo['cod']."><button class='btn btn-success btn-sm' title='Vizualizar'><i class='bi bi-search'></i></button></a> <a href=editar.php?edit=".$campo['cod']."> <button class='btn btn-secondary btn-sm' title='Editar'><i class='bi bi-pencil-square'></i></button></a> <a href=view.php?del=".$campo['cod']." id='del' data-bs-toggle='modal' data-bs-target='#modalDelete'> <button class='btn btn-danger btn-sm' title='Excluir'><i class='bi bi-trash'></i></button></a> <a href=relatorios.php?cod=".$campo['cod']."><button class='btn btn-warning btn-sm' title='Relatório'><i class='bi bi-list-ol'></i></button></a></td></tr>";
 	}
 }
 
@@ -193,5 +193,6 @@ $nome=$_GET['nomeItem'];
  </div>
 </main>
 </body>
+  <script src="style/func.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </html>
