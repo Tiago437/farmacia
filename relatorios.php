@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once("config/class.func.cfg.php");
-require_once("config/menu.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,18 +9,22 @@ require_once("config/menu.php");
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Items proximo do vencimento</title>
 		
-	<!-- bootstrap 5.3.2 -->
+  
+  <!-- bootstrap 5.3.2 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-	<!-- sweetalert -->
-	<script src="style/sweetalert.js"></script>
-	<!-- funções -->
-	<script src="style/func.js"></script>
-	<!-- estilo css -->
-	<link rel="stylesheet" href="style/css.css" type="text/css">
+<!-- icones bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- sweetalert -->
+  <script src="style/sweetalert.js"></script>
+  <!-- estilo personalizado -->
+
+  <link rel="stylesheet" href="style/css.css" type="text/css">
 </head>
 
 <body>
+  <?php 
+require_once("config/menu.php");
+ ?>
 <main class="d-flex flex-nowrap">
 				<!-- inicio menu responsivo -->
 <nav class="navbar navbar-dark bg-dark fixed-top d-none" id="menu-responsivo">
@@ -151,65 +154,10 @@ require_once("config/menu.php");
 $cod=$_GET['cod'];
 ?>
 <div class="container vh-100">
-	<div class="row">
-	<form action="" method="GET">
-		<div class="col mt-2">
-		<h5>Relatório individual:</h5>
-		</div>
-		<div class="col mt-2">
-		<label for="dia">Diário</label>
-		<input type="radio" name="tipor" value="dia" id="dia" onclick="showdia(1)" required>
-		<label for="mes">Mensal</label>
-		<input type="radio" name="tipor" value="mes" id="mes" onclick="showdia(2)" required>  
-		
-		<label for="ano">Anual</label>
-		<input type="radio" name="tipor" value="ano" id="ano" onclick="showdia(3)" required>
-		
-		</div>
-		<div class="row">
-			<div class="col">
-		<select name="mov" id="">
-	    <option value="0">Geral</option>
-	    <option value="1">Entrada</option>
-		<option value="2">Saida</option>
-	    </select>
 
-		<input type="date" name="diario" id="diario" hidden>
-		
-		<select name="mensal" id="mensal" hidden>
-			<option value="1">Janeiro</option>
-			<option value="2">Fevereiro</option>
-			<option value="3">Março</option>
-			<option value="4">Abril</option>
-			<option value="5">Maio</option>
-			<option value="6">Junho</option>
-			<option value="7">Julho</option>
-			<option value="8">Agosto</option>
-			<option value="9">Setembro</option>
-			<option value="10">Outubro</option>
-			<option value="11">Novembro</option>
-			<option value="12">Dezembro</option>
-		</select>
-		<select name="anual" id="anual" hidden>
-			<option value="">Selecione o Ano</option>
-			<option value="2023">2023</option>
-			<option value="2024">2024</option>
-			<option value="2025">2025</option>
-			<option value="2026">2026</option>
-			<option value="2027">2027</option>
-		</select>
-		</div>
-		</div>
-		<div class="col mt-2">
-		<input type="text" name="cod" value="<?=$cod?>" hidden>
-		<button type="submit" name="relatorio" class="btn btn-primary" value="enviar"><i class="bi bi-list-ol"></i> Gerar Relatório</button>
-		</div>
-	</form>
-	</div>
 	<hr>	
 <?php 
 $cnt=1;
-
 if(!empty($_GET['relatorio']) && !empty($_GET['tipor'])){
 $cod1=$_GET['cod'];
 $tipo=$_GET['tipor'];
@@ -247,7 +195,7 @@ switch ($mov) {
 }
 if(strcmp($tipo,"dia")==0){
 	$car='Diário';
-	$qt1=$qt->conn->prepare("SELECT cod,nome,qtdanterior,qtd,date_format(data,'%d/%m/%Y %H:%i' ) AS data,tipo,user FROM relatorio where data='$dia' AND $mov AND cod=$cod1");
+	$qt1=$qt->conn->prepare("SELECT cod,nome,qtdanterior,qtd,date_format(data,'%d/%m/%Y %H:%i' ) AS data,tipo,user FROM relatorio where DATE(data)='$dia' AND $mov AND cod=$cod1");
 }
 if(strcmp($tipo,"mes")==0){
 	$car='Mensal';
@@ -282,7 +230,10 @@ foreach ($result as $key => $relat) {
 </div>
 </main>
 </body>
-
+ <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<!-- FUNÇÕES JS -->
+  <script src="style/func.js"></script>
+  <!-- JAVASCRIPT CDN -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </html>

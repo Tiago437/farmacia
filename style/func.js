@@ -1,9 +1,39 @@
 $(document).ready(function(){
+
+$('a').click(function(){
+var href= $(this).attr('href');
 $('#deletar').click(function(){
-var href= $('#del').attr('href');
-window.open(href,'_self');
+
+$(this).attr('href',href);
 });
 });
+
+});
+
+$('a').click(function(){
+var cod= $(this).attr('value');
+$('#cod').attr('value',cod);
+$('#diaI').click(function(){
+	 $('#diariori').removeAttr('hidden');
+	 $('#mensalri').attr('hidden','hidden');
+	 $('#anualri').attr('hidden','hidden');
+
+})
+$('#mesI').click(function(){
+	 $('#mensalri').removeAttr('hidden');
+	 $('#diariori').attr('hidden','hidden');
+	 $('#anualri').attr('hidden','hidden');	
+})
+
+$('#anoI').click(function(){
+	 $('#anualri').removeAttr('hidden');
+	 $('#mensalri').attr('hidden','hidden');
+	 $('#diariori').attr('hidden','hidden');	
+})
+
+})
+
+
 
 
 	function showdia(i){

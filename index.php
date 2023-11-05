@@ -1,7 +1,6 @@
 <?php 
 session_start();
 require_once('config/class.func.cfg.php');
-require_once("config/menu.php");
 ?>
 
 <!DOCTYPE html>
@@ -19,12 +18,7 @@ require_once("config/menu.php");
 </head>
 <body>
 <?php 
-if(!isset($_SESSION['login'])){
-echo "<div class='container vh-100 d-flex flex-column align-items-center'>
-	<h2 class='fw-normal p-4'> Erro: conta não existe! <a href='entrar.php'>clique aqui para entrar</a></h2>
-</div></body></html>";
-die();
-}
+require_once("config/menu.php");
 
  ?>
 			<!-- inicio menu responsivo -->
@@ -183,7 +177,7 @@ $nome=$_GET['nomeItem'];
 	$result=$q1->fetchall();
 
 	foreach ($result as $key => $campo) {
-		echo "<tr><td>".$campo['cod']."</td><td>".$campo['nome']."</td><td>".$campo['quantidade']."</td><td>".$campo['dataVencimento']."</td><td id='desc'>".$campo['descricao']."</td><td><a href=att.php?cod=".$campo['cod']."><button class='btn btn-success btn-sm' title='Vizualizar'><i class='bi bi-search'></i></button></a> <a href=editar.php?edit=".$campo['cod']."> <button class='btn btn-secondary btn-sm' title='Editar'><i class='bi bi-pencil-square'></i></button></a> <a href=view.php?del=".$campo['cod']." id='del' data-bs-toggle='modal' data-bs-target='#modalDelete'> <button class='btn btn-danger btn-sm' title='Excluir'><i class='bi bi-trash'></i></button></a> <a href=relatorios.php?cod=".$campo['cod']."><button class='btn btn-warning btn-sm' title='Relatório'><i class='bi bi-list-ol'></i></button></a></td></tr>";
+		echo "<tr><td>".$campo['cod']."</td><td>".$campo['nome']."</td><td>".$campo['quantidade']."</td><td>".$campo['dataVencimento']."</td><td id='desc'>".$campo['descricao']."</td><td><a href=att.php?cod=".$campo['cod']."><button class='btn btn-success btn-sm' title='Vizualizar'><i class='bi bi-search'></i></button></a> <a href=editar.php?edit=".$campo['cod']."> <button class='btn btn-secondary btn-sm' title='Editar'><i class='bi bi-pencil-square'></i></button></a> <a href=view.php?del=".$campo['cod']." data-bs-toggle='modal' data-bs-target='#modalDelete'> <button class='btn btn-danger btn-sm' title='Excluir'><i class='bi bi-trash'></i></button></a> <a href='#' id='codig' value=".$campo['cod']." data-bs-toggle='modal' data-bs-target='#modalrelatorioI' ><button class='btn btn-warning btn-sm' title='Relatório'><i class='bi bi-list-ol'></i></button></a></td></tr>";
 	}
 }
 
@@ -193,6 +187,9 @@ $nome=$_GET['nomeItem'];
  </div>
 </main>
 </body>
-  <script src="style/func.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<!-- FUNÇÕES JS -->
+<script src="style/func.js"></script>
+  <!-- JAVASCRIPT CDN -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </html>

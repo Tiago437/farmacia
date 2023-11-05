@@ -1,7 +1,6 @@
 <?php 
 session_start();
 require_once('config/class.func.cfg.php');
-require_once("config/menu.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,14 +8,18 @@ require_once("config/menu.php");
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Visualizar Items</title>
-	<!-- bootstrap 5.3.2 -->
+  <!-- bootstrap 5.3.2 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-	
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-	<link rel="stylesheet" href="style/css.css" type="text/css">
+<!-- icones bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- sweetalert -->
+  <script src="style/sweetalert.js"></script>
+  <!-- estilo personalizado -->
+
+  <link rel="stylesheet" href="style/css.css" type="text/css">
 </head>
 <body>
+  <?php require_once("config/menu.php"); ?>
 <main class="d-flex flex-nowrap">
 		<!-- inicio menu responsivo -->
   
@@ -155,10 +158,8 @@ $result=$query->fetch();
 
  ?>
 <div class="container vh-100 d-flex flex-column align-items-center">
-
-	<!-- sass -->
 <div class="d-flex justify-content-center align-items-center">
-	<form action="" method="POST" id="formcad" class="eform"> 
+	<form action="" method="POST" class="eform"> 
 		<div class="form-floating mb-3">
   <input type="text" class="form-control" name="nomeItem" value="<?= $result['nome']?>" id="nome" required>
   <label for="nome">Nome do Item</label>
@@ -203,7 +204,7 @@ $result=$query->fetch();
 		</div>
 </div>
 		</div>
-		<input type="number" name="cod" value="<?= $result['cod']?>" hidden>
+		<input type="number" name="codit" value="<?= $cod?>" hidden>
 		<button class="btn btn-primary" type="submit" value="enviar" name="enviar">Atualizar</button>
 		
 		
@@ -215,8 +216,9 @@ if(!empty($_POST['enviar'])){
 		$quant=$_POST['quantidade'];
 		$dataV= $_POST['datavencimentoItem'];
 		$tipo=$_POST['tipoItem'];
-		$cod1=$_POST['cod'];
+		$cod1=$_POST['codit'];
 		$desc=$_POST['desc'];
+
 
 		$query = new SQL();
 		$qt=$query->conn->prepare("UPDATE produtos SET nome=?,quantidade=?,dataVencimento=?,tipo=?,descricao=?  WHERE cod=?");
@@ -227,12 +229,28 @@ if(!empty($_POST['enviar'])){
 		$qt->bindvalue(5,$desc);
 		$qt->bindvalue(6,$cod1);
 
-		$qt->execute();
+		if($qt->execute()){
+      die("<script>
+ Swal.fire({
+  position: 'top',
+  icon: 'success',
+  title: 'Item alterado com sucesso!',
+  showConfirmButton: false,
+  timer: 1500
+})
+
+</script><meta http-equiv='refresh' content='2 home.php'>");
+    }
 		 
 	}
 	?>
 	</div>
+    }
 </main>
 </body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<!-- FUNÇÕES JS -->
+<script src="style/func.js"></script>
+<!-- JAVASCRIPT CDN -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </html>

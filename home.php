@@ -1,7 +1,6 @@
 <?php 
 session_start();
 require_once('config/class.func.cfg.php');
-require_once("config/menu.php");
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +19,9 @@ require_once("config/menu.php");
 </head>
 
 <body>
+  <?php 
+require_once("config/menu.php");
+ ?>
 <?php 
 if(isset($_GET['alter'])){
   if($_GET['alter']==1){

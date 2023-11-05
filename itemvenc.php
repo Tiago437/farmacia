@@ -1,7 +1,7 @@
 <?php 
 session_start();
 require_once('config/class.func.cfg.php');
-require_once("config/menu.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +16,7 @@ require_once("config/menu.php");
 	<link rel="stylesheet" href="style/css.css" type="text/css">
 </head>
 <body>
+<?php require_once("config/menu.php"); ?>
 <main class="d-flex flex-nowrap">
 				<!-- inicio menu responsivo -->
 <nav class="navbar navbar-dark bg-dark fixed-top d-none" id="menu-responsivo">
@@ -181,7 +182,7 @@ foreach ($result as $key => $value) {
 	}else{
 		$cor='table-light';
 	}
-	echo "<tr class=".$cor."><td>".$value['cod']."</td><td>".$value['nome']."</td><td>".$value['quantidade']."</td><td>".$value['tipo']."</td><td>".$value['dataVencimento']."</td><td id='desc'>".$value['descricao']."</td><td>".$value['diasRestantes']."</td><td> <a href=att.php?cod=".$value['cod']."><button class='btn btn-success btn-sm' title='Vizualizar'><i class='bi bi-search'></i> </button></a> <a href=view.php?del=".$value['cod']." ><button class='btn btn-danger btn-sm' title='Excluir'><i class='bi bi-trash'></i></button></a></td></tr>";
+	echo "<tr class=".$cor."><td>".$value['cod']."</td><td>".$value['nome']."</td><td>".$value['quantidade']."</td><td>".$value['tipo']."</td><td>".$value['dataVencimento']."</td><td id='desc'>".$value['descricao']."</td><td>".$value['diasRestantes']."</td><td> <a href=att.php?cod=".$value['cod']."><button class='btn btn-success btn-sm' title='Vizualizar'><i class='bi bi-search'></i> </button></a> <a href='view.php?del=".$value['cod']."' data-bs-toggle='modal' data-bs-target='#modalDelete'  ><button class='btn btn-danger btn-sm' title='Excluir'><i class='bi bi-trash'></i></button></a></td></tr>";
 }
 if(isset($_GET['del'])){
 
@@ -198,5 +199,9 @@ header("location: index.php");
 </div>
 </main>
 </body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<!-- FUNÇÕES JS -->
+<script src="style/func.js"></script>
+  <!-- JAVASCRIPT CDN -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </html>

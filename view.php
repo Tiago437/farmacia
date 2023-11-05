@@ -1,7 +1,6 @@
 <?php 
 session_start();
 require_once('config/class.func.cfg.php');
-require_once("config/menu.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,10 +11,11 @@ require_once("config/menu.php");
 	
 	<!-- bootstrap 5.3.2 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<!-- icones bootstrap -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 	<!-- sweetalert -->
 	<script src="style/sweetalert.js"></script>
-	<!-- funções -->
+	<!-- estilo personalizado -->
 
 	<link rel="stylesheet" href="style/css.css" type="text/css">
 
@@ -288,7 +288,7 @@ if(isset($_GET['del'])){
 	$q3->bindvalue(1,$coddel);
 	$q3->execute();
 	unset($_GET);
-echo"<meta http-equiv='refresh' content='0.5 view.php'>";
+echo"<meta http-equiv='refresh' content='1.5 home.php'>";
 }
 fim:
 ?>
@@ -324,6 +324,9 @@ fim:
 </main>
 </body>
 
+   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<!-- FUNÇÕES JS -->
   <script src="style/func.js"></script>
+  <!-- JAVASCRIPT CDN -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </html>
