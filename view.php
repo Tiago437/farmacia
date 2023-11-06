@@ -200,7 +200,7 @@ switch ($mov) {
 }
 if(strcmp($tipo,"dia")==0){
 	$car='Diário';
-	$qt1=$qt->conn->prepare("SELECT cod,nome,qtdanterior,qtd,date_format(data,'%d/%m/%Y %H:%i') AS data,tipo,user FROM relatorio where data='$dia' AND $mov");
+	$qt1=$qt->conn->prepare("SELECT cod,nome,qtdanterior,qtd,date_format(data,'%d/%m/%Y %H:%i') AS data,tipo,user FROM relatorio where DATE(data)='$dia' AND $mov");
 }
 if(strcmp($tipo,"mes")==0){
 	$car='Mensal';
