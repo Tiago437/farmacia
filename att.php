@@ -196,7 +196,7 @@ $cod=$_GET['cod'];
 		
 		<input type="number" name="cod" value="<?= $result['cod']?>" hidden>
 		<button class="btn btn-primary" type="submit" value="Adicionar" name="enviar"><i class='bi bi-plus-lg'></i> Adicionar</button>
-		<button class="btn btn-danger" type="submit" value="Retirar" name="enviar"><i class='bi bi-dash-lg'></i> Retirar</button>
+		<button class="btn btn-danger" type="submit" value="Retirar" name="enviar"><i class='bi bi-dash-lg'></i> Retirar</button> <a href="index.php" class="btn btn-secondary"> Voltar</a>
 
 	</form>
 </div>

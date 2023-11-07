@@ -3,7 +3,7 @@ $(document).ready(function(){
 $('a').click(function(){
 var href= $(this).attr('href');
 $('#deletar').click(function(){
-window.open(href,'_self');
+	$('#deletar').attr('href',href);
 });
 });
 
@@ -31,8 +31,6 @@ $('#anoI').click(function(){
 })
 
 })
-
-
 
 
 	function showdia(i){

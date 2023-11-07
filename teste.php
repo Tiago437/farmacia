@@ -4,7 +4,7 @@ require_once('config/class.func.cfg.php');
 
 $qt=new SQL();
 
-$entrada='remediothj';
+$entrada='medicamento';
 
 for($i=0;$i<40;$i++){
 $remedio=str_shuffle($entrada);

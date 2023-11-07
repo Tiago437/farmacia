@@ -234,15 +234,15 @@ $r3=$c4->fetch();
   		<h2 class="mt-3">Estatisticas do Mês</h2>
   <div class="top-box d-flex justify-content-evenly align-items-center w-100">
   	
-  	<a href="view.php" class="text-decoration-none"><div class="box box1 d-flex justify-content-center align-items-center text-bg-success"><p><?=$r['cnt']?></p></div></a>
+  	<a href="view.php" class="text-decoration-none" title="Cadastrados no mês"><div class="box box1 d-flex justify-content-center align-items-center text-bg-success"><p><?=$r['cnt']?></p></div></a>
   	
-  	<a href="view.php?tipor=mes&mov=1&mensal=10&relatorio=enviar&cod&diario&anual" class="text-decoration-none"><div class="box box2 d-flex flex-column justify-content-center align-items-center text-bg-primary"><p><?=$r1['cnt']?></p>
+  	<a class="text-decoration-none" title="Entradas no mês"><div class="box box2 d-flex flex-column justify-content-center align-items-center text-bg-primary"><p><?=$r1['cnt']?></p>
   	</div></a>
 
 
-  	<a href="view.php?tipor=mes&mov=2&mensal=10&relatorio=enviar&cod&diario&anual" class="text-decoration-none"><div class="box box3 d-flex flex-column justify-content-center align-items-center text-bg-warning"><p><?=$r2['cnt']?></p>
+  	<a class="text-decoration-none" title="Saidas no mês"><div class="box box3 d-flex flex-column justify-content-center align-items-center text-bg-warning"><p><?=$r2['cnt']?></p>
   </div></a>
-  	<a href="itemvenc.php" class="text-decoration-none"><div class="box box4 d-flex justify-content-center align-items-center text-bg-danger"><p><?=$r3['cnt']?></p></div></a>
+  	<a href="itemvenc.php" class="text-decoration-none" title="Items proximos a vencer"><div class="box box4 d-flex justify-content-center align-items-center text-bg-danger"><p><?=$r3['cnt']?></p></div></a>
   </div>
   <div class="d-flex flex-row justify-content-center" id="grafico1">
   <canvas id="grafico">

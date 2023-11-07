@@ -15,14 +15,19 @@ require_once('config/class.func.cfg.php');
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 	<!-- sweetalert -->
 	<script src="style/sweetalert.js"></script>
+
 	<!-- estilo personalizado -->
 
 	<link rel="stylesheet" href="style/css.css" type="text/css">
+   <!-- jspdf -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+
 
 </head>
 
 <body id="body"> 
-<?php 
+
+  <?php 
 require_once("config/menu.php");
  ?>
 	<main class="d-flex flex-nowrap">
@@ -155,8 +160,11 @@ require_once("config/menu.php");
 
 	<div class="d-grid gap-1 d-md-flex justify-content-md-end mt-2">
 	<button type="button" class="btn btn-warning" onclick="window.print()">Imprimir</button>
-<button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-list-ol"></i> Relatório
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#relatorioGeral"><i class="bi bi-list-ol"></i> Relatório
 </button>
+ <div class="d-flex justify-content-end mb-1 mt-1">
+    <a href="view.php"> <button type="button" class="btn btn-secondary"> Voltar </button> </a>
+  </div>
 
 </div>
 <hr>
@@ -240,8 +248,11 @@ if(!$pageinit){
 }else{
   $pageinit=1;
 }
-
-$limitepg=12;
+if(isset($_GET['pg'])){
+  $limitepg=$_GET['pg'];
+}else{
+$limitepg=19;
+}
 
 $offset=$pageinit*$limitepg-$limitepg;
 
@@ -286,9 +297,18 @@ if(isset($_GET['del'])){
 	$coddel=$_GET['del'];
 	$q3=$q1->conn->prepare("DELETE FROM produtos WHERE cod=?");
 	$q3->bindvalue(1,$coddel);
-	$q3->execute();
-	unset($_GET);
-echo"<meta http-equiv='refresh' content='1.5 home.php'>";
+	if($q3->execute()){
+echo"<script>
+ Swal.fire({
+  position: 'top',
+  icon: 'success',
+  title: 'Item apagado com sucesso!',
+  showConfirmButton: false,
+  timer: 1500
+})
+
+</script><meta http-equiv='refresh' content='1.7 view.php'>";
+}
 }
 fim:
 ?>
@@ -322,11 +342,14 @@ fim:
 </nav>
 </div>
 </main>
-</body>
-
+</body> 
    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 <!-- FUNÇÕES JS -->
   <script src="style/func.js"></script>
+
   <!-- JAVASCRIPT CDN -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
 </html>

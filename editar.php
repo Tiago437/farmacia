@@ -206,6 +206,7 @@ $result=$query->fetch();
 		</div>
 		<input type="number" name="codit" value="<?= $cod?>" hidden>
 		<button class="btn btn-primary" type="submit" value="enviar" name="enviar">Atualizar</button>
+     <a href="view.php" class="btn btn-secondary"> Voltar</a>
 		
 		
 	</form>	

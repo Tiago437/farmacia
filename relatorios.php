@@ -154,7 +154,9 @@ require_once("config/menu.php");
 $cod=$_GET['cod'];
 ?>
 <div class="container vh-100">
-
+  <div class="d-flex flex-nowrap justify-content-end mb-1 mt-1">
+    <a href="view.php" class="btn btn-secondary"> Voltar </a>
+  </div>
 	<hr>	
 <?php 
 $cnt=1;
